@@ -55,7 +55,7 @@
     <Key name="ALT">                <Action text="A" mod="alt"/>                </Key>
     <Key name="SHIFT">              <Action text="⇧" mod="shift"/>              </Key>
     <Key name="CTRL">               <Action text="C" key="23" isSpecial="1"/>   </Key>
-    <Key name="LOCK">               <Action text="⇪" cmd="lock"/>               </Key>
+    <Key name="LOCK">               <Action text="⇪" cmd="lock"/>               <Action shift="1" text="⇪" cmd="lock"/>     </Key>
 
     <Key name="BACKSPACE">          <Action text="↚" key="67"/>                 </Key>
     <Key name="SPACE">              <Action text="▆" key="62"/>                 </Key>

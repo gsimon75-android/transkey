@@ -53,7 +53,7 @@ public class TransparentKeyboardView extends LinearLayout {
 	int					numModifiers = 0;
 	HashMap<String, Integer>		modifiers = new HashMap();
 	boolean					isTypingPassword;
-	BitSet					mods, locks;
+	BitSet					mods = new BitSet(), locks = new BitSet();
 	HashMap<String, KeyDefinition>		keys = new HashMap();
 
 	LinearLayout.LayoutParams		lp;
@@ -65,7 +65,6 @@ public class TransparentKeyboardView extends LinearLayout {
 		do {
 			parser.next();
 			eType = parser.getEventType();
-			//Log.d(TAG, "Parsed event; type='" + String.valueOf(eType) + "'");
 		} while ((eType != XmlPullParser.END_DOCUMENT) && (eType != XmlPullParser.START_TAG) && (eType != XmlPullParser.END_TAG) && (eType != XmlPullParser.TEXT));
 		/* event types (missing from the docs -> "Use the source, Luke, use the source!")
 			public final static int START_DOCUMENT = 0;
@@ -86,14 +85,16 @@ public class TransparentKeyboardView extends LinearLayout {
 	class Action {
 		int		keyCode, layout, mod;
 		String		code, text, cmd;
-		boolean		isLock, isEmpty, isSpecial;
+		boolean		isEmpty, isSpecial;
 		BitSet		mods = new BitSet();
+		Paint		paint;
+		float		textWidth;
 
 		public Action(XmlPullParser parser) throws XmlPullParserException, IOException {
 			if ((parser.getEventType() != XmlPullParser.START_TAG) || !parser.getName().contentEquals("Action"))
 				throw new XmlPullParserException("Expected <Action>", parser, null);
 
-			isLock = isEmpty = false;
+			isEmpty = false;
 			keyCode = layout = mod = -1;
 
 			int n = 0;
@@ -117,12 +118,6 @@ public class TransparentKeyboardView extends LinearLayout {
 				else if (attrName.contentEquals("cmd")) {
 					isSpecial = true;
 					cmd = attrValue;
-					n++;
-				}
-				else if (attrName.contentEquals("lock")) {
-					isSpecial = true;
-					isLock = true;
-					mod = modifierId(attrValue);
 					n++;
 				}
 				else if (attrName.contentEquals("mod")) {
@@ -160,6 +155,12 @@ public class TransparentKeyboardView extends LinearLayout {
 			if ((seekImportant(parser) != XmlPullParser.END_TAG) || !parser.getName().contentEquals("Action"))
 				throw new XmlPullParserException("Expected </Action>", parser, null);
 		}
+
+		void
+		setPaint() {
+			paint = isSpecial ? specPaint : textPaint;
+			textWidth = paint.measureText(text);
+		}
 	}
 
 	class Row extends LinearLayout {
@@ -189,8 +190,12 @@ public class TransparentKeyboardView extends LinearLayout {
 
 					case MotionEvent.ACTION_UP:
 						KeyDefinition km = keys.get(name);
+						if (km == null)
+							return true;
 						Action ac = km.actions.get(mods);
-						return (ac != null) ?  processAction(ac) : true;
+						if (ac == null)
+							return true;
+						return processAction(ac);
 
 					case MotionEvent.ACTION_MOVE:
 						return true;
@@ -199,24 +204,27 @@ public class TransparentKeyboardView extends LinearLayout {
 			}
 
 			@Override protected void onDraw(Canvas canvas) {
-				Log.d(TAG, "Key.onDraw();");
 				int xmax = width * unit;
-				RectF fullRect = new RectF(0, 0, xmax - 1, unit - 1);
-				RectF innerRect = new RectF(2, 2, xmax - 3, unit - 3);
+				int ymax = defKeyWidth * unit;
+				RectF fullRect = new RectF(0, 0, xmax - 1, ymax - 1);
+				RectF innerRect = new RectF(2, 2, xmax - 3, ymax - 3);
 
 				canvas.drawRoundRect(fullRect, 5, 5, framePaint);
 				canvas.drawRoundRect(innerRect, 5, 5, buttonPaint);
+
 				KeyDefinition km = keys.get(name);
-				Action ac = km.actions.get(mods);
-				if (ac != null)
-					canvas.drawText(ac.text, 5, 5, ac.isSpecial ? specPaint : textPaint);
+				if (km != null) {
+					Action ac = km.actions.get(mods);
+					if (ac != null)
+						canvas.drawText(ac.text, xmax / 2, (ymax - fontSize) / 2 + fontDispY, ac.paint);
+				}
 			}
 
 			@Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 				// policy: if not specified by the parent as EXACTLY, use our own ideas
 				int w = (View.MeasureSpec.getMode(widthMeasureSpec) == View.MeasureSpec.EXACTLY) ? View.MeasureSpec.getSize(widthMeasureSpec) : width * unit;
-				int h = (View.MeasureSpec.getMode(heightMeasureSpec) == View.MeasureSpec.EXACTLY) ? View.MeasureSpec.getSize(heightMeasureSpec) : unit;
-				Log.d(TAG, "Key.onMeasure; res='(" + String.valueOf(w) + ", " + String.valueOf(h) + ")'");
+				int h = (View.MeasureSpec.getMode(heightMeasureSpec) == View.MeasureSpec.EXACTLY) ? View.MeasureSpec.getSize(heightMeasureSpec) : defKeyWidth * unit;
+				//Log.d(TAG, "Key.onMeasure; name='" + name + "', spec='(" + View.MeasureSpec.toString(widthMeasureSpec) + ", " + View.MeasureSpec.toString(heightMeasureSpec) + "), res='(" + String.valueOf(w) + ", " + String.valueOf(h) + ")'");
 				setMeasuredDimension(w, h);
 			}
 		}
@@ -240,14 +248,8 @@ public class TransparentKeyboardView extends LinearLayout {
 			// Report the size of the alignment
 			@Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 				int w = (View.MeasureSpec.getMode(widthMeasureSpec) == View.MeasureSpec.EXACTLY) ? View.MeasureSpec.getSize(widthMeasureSpec) : width * unit;
-				int h = (View.MeasureSpec.getMode(heightMeasureSpec) == View.MeasureSpec.EXACTLY) ? View.MeasureSpec.getSize(heightMeasureSpec) : unit;
-				Log.d(TAG, "Align.onMeasure; res='(" + String.valueOf(w) + ", " + String.valueOf(h) + ")'");
+				int h = (View.MeasureSpec.getMode(heightMeasureSpec) == View.MeasureSpec.EXACTLY) ? View.MeasureSpec.getSize(heightMeasureSpec) : defKeyWidth * unit;
 				setMeasuredDimension(w, h);
-			}
-
-			@Override protected void onDraw(Canvas canvas) {
-				super.onDraw(canvas);
-				Log.d(TAG, "Align.onDraw();");
 			}
 		}
 
@@ -280,7 +282,6 @@ public class TransparentKeyboardView extends LinearLayout {
 				else
 					throw new XmlPullParserException("Expected <Align> or <Key>", parser, null);
 			}
-			Log.d(TAG, "Row closed; tag='" + parser.getName() + "'");
 			if (!parser.getName().contentEquals("Row"))
 				throw new XmlPullParserException("Expected </Row>", parser, null);
 		}
@@ -305,15 +306,7 @@ public class TransparentKeyboardView extends LinearLayout {
 						android.view.View.MeasureSpec.EXACTLY,
 						android.view.View.MeasureSpec.getSize(widthMeasureSpec));
 			}
-			Log.d(TAG, "Row.onMeasure; res='(" + 
-				String.valueOf(android.view.View.MeasureSpec.getSize(widthMeasureSpec)) + ", " +
-				String.valueOf(android.view.View.MeasureSpec.getSize(heightMeasureSpec)) + ")'");
 			super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		}
-
-		@Override protected void onDraw(Canvas canvas) {
-			super.onDraw(canvas);
-			Log.d(TAG, "Row.onDraw();");
 		}
 	}
 
@@ -326,18 +319,28 @@ public class TransparentKeyboardView extends LinearLayout {
 				throw new XmlPullParserException("Expected <TransparentKeyboard>", parser, null);
 
 			keyName = parser.getAttributeValue(null, "name");
-			if (keyName != null)
-				Log.i(TAG, "Loading key definition '"+keyName+"'");
-
 			while (seekImportant(parser) != XmlPullParser.END_TAG) {
 				if ((parser.getEventType() != XmlPullParser.START_TAG) || !parser.getName().contentEquals("Action"))
 					throw new XmlPullParserException("Expected <Action> tag", parser, null);
 				Action ac = new Action(parser);
 				actions.put(ac.mods, ac);
+				if (ac.mod >= 0) {
+					BitSet b = new BitSet();
+					b.set(ac.mod);
+					actions.put(b, ac);
+				}
 			}
 
 			if (!parser.getName().contentEquals("Key"))
 				throw new XmlPullParserException("Expected </Key>", parser, null);
+		}
+
+		void
+		setPaint() {
+			for (Iterator<Action> it = actions.values().iterator(); it.hasNext(); ) {
+				Action ac = it.next();
+				ac.setPaint();
+			}
 		}
 	}
 
@@ -345,13 +348,19 @@ public class TransparentKeyboardView extends LinearLayout {
 	public TransparentKeyboardView(Context context) {
 		super(context);
 		//setBackgroundColor(0xff003f00); // for debugging placement
+		setOrientation(android.widget.LinearLayout.VERTICAL);
+		setGravity(android.view.Gravity.CENTER);
 		lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 		lp.setMargins(0, 1, 0, 1);
-	}
+		textPaint.setAntiAlias(true);
+		textPaint.setColor(Color.WHITE);
+		textPaint.setTextAlign(Paint.Align.CENTER);
+		textPaint.setShadowLayer(3, 0, 2, 0xff000000);
 
-	@Override protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-		Log.d(TAG, "TransparentKeyboardView.onDraw();");
+		specPaint.setAntiAlias(true);
+		specPaint.setColor(Color.CYAN);
+		specPaint.setTextAlign(Paint.Align.CENTER);
+		specPaint.setShadowLayer(3, 0, 2, 0xff000000);
 	}
 
 	int modifierId(String s) {
@@ -397,9 +406,6 @@ public class TransparentKeyboardView extends LinearLayout {
 				else
 					throw new XmlPullParserException("Expected <Row> or <Key>", parser, null);
 			}
-			else {
-				Log.d(TAG, "Found event; type='" + String.valueOf(parser.getEventType()) + "'");
-			}
 		}
 
 		if (!parser.getName().contentEquals("TransparentKeyboard"))
@@ -413,15 +419,21 @@ public class TransparentKeyboardView extends LinearLayout {
 	public void calculateSizesForMetrics(DisplayMetrics metrics) {
 		// note: the metrics may change during the lifetime of the instance, so these precalculations could not be done in the constructor
 		unit = metrics.widthPixels / width;
-		textPaint.setTextSize(unit / 2);
-		specPaint.setTextSize(unit / 2);
+		textPaint.setTextSize(defKeyWidth * unit / 2);
+		specPaint.setTextSize(defKeyWidth * unit / 2);
 
 		Paint.FontMetrics fm = textPaint.getFontMetrics();
 		fontSize = fm.descent - fm.ascent;
 		fontDispY = -fm.ascent;
 
-		buttonPaint.setShader(new LinearGradient(0, 0, 0, unit, 0xff696969, 0xff0a0a0a, android.graphics.Shader.TileMode.CLAMP));
-		framePaint.setShader(new LinearGradient(0, 0, 0, unit, 0xff787878, 0xff000000, android.graphics.Shader.TileMode.CLAMP));
+		int ymax = defKeyWidth * unit;
+		buttonPaint.setShader(new LinearGradient(0, 0, 0, ymax, 0xff696969, 0xff0a0a0a, android.graphics.Shader.TileMode.CLAMP));
+		framePaint.setShader(new LinearGradient(0, 0, 0, ymax, 0xff787878, 0xff000000, android.graphics.Shader.TileMode.CLAMP));
+
+		for (Iterator<KeyDefinition> it = keys.values().iterator(); it.hasNext(); ) {
+			KeyDefinition km = it.next();
+			km.setPaint();
+		}
 	}
 
 	public void setOnKeyboardActionListener(KeyboardView.OnKeyboardActionListener listener) {
@@ -437,16 +449,17 @@ public class TransparentKeyboardView extends LinearLayout {
 		if (cd == null)
 			return false;
 
-		if (cd.mod >= 0) {	// process a 'mod' or 'lock'
+		if (cd.mod >= 0) {	// process a 'mod'
 			mods.flip(cd.mod);
-			if (cd.isLock)
-				locks.flip(cd.mod);
-			// FIXME: invalidate();
+			/*if (cd.isLock)
+				locks.flip(cd.mod); */
+			invalidate();
 		}
 		else if (actionListener != null) {
 			if (!mods.equals(locks)) {
-				mods = locks;
-				// FIXME: invalidate();
+				mods.clear();
+				mods.or(locks);
+				invalidate();
 			}
 			if (cd.code != null)
 				actionListener.onText(cd.code); // process a 'code'
