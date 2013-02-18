@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TransparentKeyboard name="Latin" width="58" default_key_width="4">
+    <!-- W=58
+    +‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+    ||Acu|Bre|Car|Ced|Cir|Dbl|Dia|Dot|Gra|Hor|Mac|Ogo|Til|Str||
+    +‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+    | ` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | ‒ | = | Bksp|
+    +‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+    | Tab| q | w | e | r | t | y | u | i | o | p | [ | ] | EN |
+    +‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒++ T +
+    | Lock| a | s | d | f | g | h | j | k | l | ; | ' | \ | ER|
+    +‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+    | Shift| z | x | c | v | b | n | m | , | . | / |  | Up|   |
+    +‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+    | Ctrl||Esc||         s p a c e        ||Spec||Lft| Dn|Rgt|
+    +‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+ -->
+    <Row>
+        <Align width="1"/> <Key name="ACUTE"/> <Key name="BREVE"/> <Key name="CARON"/> <Key name="CEDILLA"/> <Key name="CIRC"/> <Key name="DBLACUTE"/> <Key name="DIAE"/> <Key name="DOT"/> <Key name="GRAVE"/> <Key name="HORN"/> <Key name="MACRON"/> <Key name="OGONEK"/> <Key name="TILDE"/> <Key name="STROKE"/> <Align width="1"/>
+    </Row>
+    <Row>
+        <Key name="BACKTICK"/> <Key name="1"/> <Key name="2"/> <Key name="3"/> <Key name="4"/> <Key name="5"/> <Key name="6"/> <Key name="7"/> <Key name="8"/> <Key name="9"/> <Key name="0"/> <Key name="MINUS"/> <Key name="EQUALS"/> <Key name="BACKSPACE" width="6"/>
+    </Row>
+    <Row>
+        <Key name="TAB" width="5"/> <Key name="Q"/> <Key name="W"/> <Key name="E"/> <Key name="R"/> <Key name="T"/> <Key name="Y"/> <Key name="U"/> <Key name="I"/> <Key name="O"/> <Key name="P"/> <Key name="OPENBRACKET"/> <Key name="CLOSEBRACKET"/> <Key name="ENTER" width="5"/>
+    </Row>
+    <Row>
+        <Key name="LOCK" width="6"/> <Key name="A"/> <Key name="S"/> <Key name="D"/> <Key name="F"/> <Key name="G"/> <Key name="H"/> <Key name="J"/> <Key name="K"/> <Key name="L"/> <Key name="SEMICOLON"/> <Key name="APOSTROPHE"/> <Key name="BACKSLASH"/> <Key name="ENTER" width="4"/>
+    </Row>
+    <Row>
+        <Key name="SHIFT" width="7"/> <Key name="Z"/> <Key name="X"/> <Key name="C"/> <Key name="V"/> <Key name="B"/> <Key name="N"/> <Key name="M"/> <Key name="COMMA"/> <Key name="DOT"/> <Key name="SLASH"/> <Align width="3"/> <Key name="UP"/> <Align width="4"/>
+    </Row>
+    <Row>
+        <Key name="CTRL" width="6"/> <Align width="1"/> <Key name="ESC"/> <Align width="1"/> <Key name="SPACE" width="27"/> <Align width="1"/> <Key name="D_SPEC" width="5"/> <Align width="1"/> <Key name="LEFT"/> <Key name="DOWN"/> <Key name="RIGHT"/>
+    </Row>
+
+    <!-- fixme: (.*) below, hook, double acute, inverted breve, composite accents -->
+    <Key name="ACUTE">              <Action text="◌́" mod="acute"/>              </Key>
+    <Key name="BREVE">              <Action text="◌̆" mod="breve"/>              </Key>
+    <Key name="CARON">              <Action text="◌̌" mod="caron"/>              </Key>
+    <Key name="CEDILLA">            <Action text="◌̧" mod="cedilla"/>            </Key>
+    <Key name="CIRC">               <Action text="◌̂" mod="circ"/>               </Key>
+    <Key name="DBLACUTE">           <Action text="◌̋" mod="dblacute"/>           </Key>
+    <Key name="DIAE">               <Action text="◌̈" mod="diae"/>               </Key>
+    <Key name="DOT">                <Action text="◌̇" mod="dot"/>                </Key>
+    <Key name="GRAVE">              <Action text="◌̀" mod="grave"/>              </Key>
+    <Key name="HORN">               <Action text="◌̛" mod="horn"/>               </Key>
+    <Key name="MACRON">             <Action text="◌̄" mod="macron"/>             </Key>
+    <Key name="OGONEK">             <Action text="◌̨" mod="ogonek"/>             </Key>
+    <Key name="RING">               <Action text="◌̊" mod="ring"/>               </Key>
+    <Key name="TILDE">              <Action text="◌̃" mod="tilde"/>              </Key>
+    <Key name="STROKE">             <Action text="◌̵" mod="stroke"/>             </Key>
+
+    <Key name="SPEC">               <Action text="S" mod="spec"/>               </Key>
+    <Key name="ALT">                <Action text="A" mod="alt"/>                </Key>
+    <Key name="SHIFT">              <Action text="⇧" mod="shift"/>              </Key>
+    <Key name="CTRL">               <Action text="C" key="23" isSpecial="1"/>   </Key>
+    <Key name="LOCK">               <Action text="⇪" cmd="lock"/>               </Key>
+
+    <Key name="BACKSPACE">          <Action text="↚" key="67"/>                 </Key>
+    <Key name="SPACE">              <Action text="▆" key="62"/>                 </Key>
+    <Key name="TAB">                <Action text="⇨" key="61"/>                 </Key>
+
+    <Key name="APOSTROPHE">
+        <Action code="'"/> <Action shift="1" code="&quot;"/>
+        <Action spec="1" code="´"/> <Action spec="1" shift="1" code="¨"/>
+    </Key>
+    <Key name="BACKSLASH">
+        <Action code="%5c"/> <!-- \ --> <Action shift="1" code="|"/>
+        <Action spec="1" code="¬"/> <Action spec="1" shift="1" code="¦"/>
+    </Key>
+    <Key name="BACKTICK">
+        <Action code="`"/> <Action shift="1" code="~"/>
+    </Key>
+    <Key name="COMMA">
+        <Action code=","/> <Action shift="1" code="&lt;"/>
+        <Action spec="1" code="ç"/> <Action spec="1" shift="1" code="Ç"/>
+    </Key>
+    <Key name="DOT">
+        <Action code="."/> <Action shift="1" code="&gt;"/>
+    </Key>
+    <Key name="ENTER">
+        <Action text="↲" key="66"/>
+        <Action text="╳" spec="1" key="23"/>
+    </Key>
+    <Key name="ESC">
+        <Action text="E" code="%1b" isSpecial="1"/>
+        <Action text="H" spec="1" cmd="hide"/>
+    </Key>
+    <Key name="MINUS">
+        <Action code="-"/> <Action shift="1" code="_"/>
+        <Action spec="1" code="¥"/>
+    </Key>
+    <Key name="EQUALS">
+        <Action code="="/> <Action shift="1" code="%2b"/> <!-- + -->
+        <Action spec="1" code="×"/> <Action spec="1" shift="1" code="÷"/>
+    </Key>
+    <Key name="OPENBRACKET">
+        <Action code="["/> <Action shift="1" code="{"/>
+        <Action spec="1" code="«"/>
+    </Key>
+    <Key name="CLOSEBRACKET">
+        <Action code="]"/> <Action shift="1" code="}"/>
+        <Action spec="1" code="»"/>
+    </Key>
+    <Key name="SEMICOLON">
+        <Action code=";"/> <Action shift="1" code=":"/>
+        <Action spec="1" code="¶"/> <Action spec="1" shift="1" code="°"/>
+    </Key>
+    <Key name="SLASH">
+        <Action code="/"/> <Action shift="1" code="%3f"/> <!-- ? -->
+        <Action spec="1" shift="1" code="¿"/>
+    </Key>
+
+    <Key name="UP">
+        <Action text="↑" key="19"/>             
+    </Key>
+    <Key name="DOWN">
+        <Action text="↓" key="20"/>             
+        <Action text="▒" spec="1" cmd="selectAll"/>
+    </Key>
+    <Key name="LEFT">
+        <Action text="←" key="21"/>
+        <Action text="↰" spec="1" cmd="selectStart"/>
+    </Key>
+    <Key name="RIGHT">
+        <Action text="→" key="22"/>
+        <Action text="↱" spec="1" cmd="selectEnd"/>
+    </Key>
+
+    <Key name="0">
+        <Action code="0"/> <Action shift="1" code=")"/>
+        <Action spec="1" code="’"/>
+    </Key>
+    <Key name="1">
+        <Action code="1"/> <Action shift="1" code="!"/>
+        <Action spec="1" code="¹"/> <Action spec="1" shift="1" code="¡"/>
+    </Key>
+    <Key name="2">
+        <Action code="2"/> <Action shift="1" code="%40"/> <!-- @ -->
+        <Action spec="1" code="²"/>
+    </Key>
+    <Key name="3">
+        <Action code="3"/> <Action shift="1" code="%23"/> <!-- # -->
+        <Action spec="1" code="³"/>
+    </Key>
+    <Key name="4">
+        <Action code="4"/> <Action shift="1" code="$"/>
+        <Action spec="1" code="¤"/> <Action spec="1" shift="1" code="£"/>
+    </Key>
+    <Key name="5"> 
+        <Action code="5"/> <Action shift="1" code="%25"/> <!-- % -->
+        <Action spec="1" code="€"/>
+    </Key>
+    <Key name="6">
+        <Action code="6"/> <Action shift="1" code="^"/>
+        <Action spec="1" code="¼"/>
+    </Key>
+    <Key name="7">
+        <Action code="7"/> <Action shift="1" code="&amp;"/>
+        <Action spec="1" code="½"/>
+    </Key>
+    <Key name="8">
+        <Action code="8"/> <Action shift="1" code="*"/>
+        <Action spec="1" code="¾"/>
+    </Key>
+    <Key name="9">
+        <Action code="9"/> <Action shift="1" code="("/>
+        <Action spec="1" code="‘"/>
+    </Key>
+
+    <Key name="A">
+        <Action code="a"/> <Action shift="1" code="A"/>
+        <Action acute="1" code="á"/> <Action shift="1" acute="1" code="Á"/>
+        <Action breve="1" code="ă"/> <Action shift="1" breve="1" code="Ă"/>
+        <Action caron="1" code="ǎ"/> <Action shift="1" caron="1" code="Ǎ"/>
+        <Action circ="1" code="â"/> <Action shift="1" circ="1" code="Â"/>
+        <Action diae="1" code="ä"/> <Action shift="1" diae="1" code="Ä"/>
+        <Action dot="1" code="ȧ"/> <Action shift="1" dot="1" code="Ȧ"/>
+        <Action grave="1" code="à"/> <Action shift="1" grave="1" code="À"/>
+        <Action macron="1" code="ā"/> <Action shift="1" macron="1" code="Ā"/>
+        <Action ogonek="1" code="ą"/> <Action shift="1" ogonek="1" code="Ą"/>
+        <Action ring="1" code="å"/> <Action shift="1" ring="1" code="Å"/>
+        <Action spec="1" code="æ"/> <Action shift="1" spec="1" code="Æ"/>
+        <Action tilde="1" code="ã"/> <Action shift="1" tilde="1" code="Ã"/>
+    </Key>
+    <Key name="B">
+        <Action code="b"/> <Action shift="1" code="B"/>
+        <Action dot="1" code="ḃ"/> <Action shift="1" dot="1" code="Ḃ"/>
+    </Key>
+    <Key name="C">
+        <Action code="c"/> <Action shift="1" code="C"/>
+        <Action acute="1" code="ć"/> <Action shift="1" acute="1" code="Ć"/>
+        <Action caron="1" code="č"/> <Action shift="1" caron="1" code="Č"/>
+        <Action cedilla="1" code="ç"/> <Action shift="1" cedilla="1" code="Ç"/>
+        <Action circ="1" code="ĉ"/> <Action shift="1" circ="1" code="Ĉ"/>
+        <Action dot="1" code="ċ"/> <Action shift="1" dot="1" code="Ċ"/>
+        <Action text="C" spec="1" cmd="copy"/>
+    </Key>
+    <Key name="D">
+        <Action code="d"/> <Action shift="1" code="D"/>
+        <Action caron="1" code="ď"/> <Action shift="1" caron="1" code="Ď"/>
+        <Action cedilla="1" code="ḑ"/> <Action shift="1" cedilla="1" code="Ḑ"/>
+        <Action dot="1" code="ḋ"/> <Action shift="1" dot="1" code="Ḋ"/>
+        <Action spec="1" code="ð"/> <Action shift="1" spec="1" code="Ð"/>
+    </Key>
+    <Key name="E">
+        <Action code="e"/> <Action shift="1" code="E"/>
+        <Action acute="1" code="é"/> <Action shift="1" acute="1" code="É"/>
+        <Action breve="1" code="ĕ"/> <Action shift="1" breve="1" code="Ĕ"/>
+        <Action caron="1" code="ě"/> <Action shift="1" caron="1" code="Ě"/>
+        <Action cedilla="1" code="ȩ"/> <Action shift="1" cedilla="1" code="Ȩ"/>
+        <Action circ="1" code="ê"/> <Action shift="1" circ="1" code="Ê"/>
+        <Action diae="1" code="ë"/> <Action shift="1" diae="1" code="Ë"/>
+        <Action dot="1" code="ė"/> <Action shift="1" dot="1" code="Ė"/>
+        <Action grave="1" code="è"/> <Action shift="1" grave="1" code="È"/>
+        <Action macron="1" code="ē"/> <Action shift="1" macron="1" code="Ē"/>
+        <Action ogonek="1" code="ę"/> <Action shift="1" ogonek="1" code="Ę"/>
+        <Action tilde="1" code="ẽ"/> <Action shift="1" tilde="1" code="Ẽ"/>
+    </Key>
+    <Key name="F">
+        <Action code="f"/> <Action shift="1" code="F"/>
+        <Action dot="1" code="ḟ"/> <Action shift="1" dot="1" code="Ḟ"/>
+    </Key>
+    <Key name="G">
+        <Action code="g"/> <Action shift="1" code="G"/>
+        <Action acute="1" code="ǵ"/> <Action shift="1" acute="1" code="Ǵ"/>
+        <Action breve="1" code="ğ"/> <Action shift="1" breve="1" code="Ğ"/>
+        <Action caron="1" code="ǧ"/> <Action shift="1" caron="1" code="Ǧ"/>
+        <Action cedilla="1" code="ģ"/> <Action shift="1" cedilla="1" code="Ģ"/>
+        <Action circ="1" code="ĝ"/> <Action shift="1" circ="1" code="Ĝ"/>
+        <Action dot="1" code="ġ"/> <Action shift="1" dot="1" code="Ġ"/>
+        <Action macron="1" code="ḡ"/> <Action shift="1" macron="1" code="Ḡ"/>
+    </Key>
+    <Key name="H">
+        <Action code="h"/> <Action shift="1" code="H"/>
+        <Action caron="1" code="ȟ"/> <Action shift="1" caron="1" code="Ȟ"/>
+        <Action cedilla="1" code="ḩ"/> <Action shift="1" cedilla="1" code="Ḩ"/>
+        <Action circ="1" code="ĥ"/> <Action shift="1" circ="1" code="Ĥ"/>
+        <Action diae="1" code="ḧ"/> <Action shift="1" diae="1" code="Ḧ"/>
+        <Action dot="1" code="ḣ"/> <Action shift="1" dot="1" code="Ḣ"/>
+        <Action stroke="1" code="ħ"/> <Action shift="1" stroke="1" code="Ħ"/>
+    </Key>
+    <Key name="I">
+        <Action code="i"/> <Action shift="1" code="I"/>
+        <Action acute="1" code="í"/> <Action shift="1" acute="1" code="Í"/>
+        <Action breve="1" code="ĭ"/> <Action shift="1" breve="1" code="Ĭ"/>
+        <Action caron="1" code="ǐ"/> <Action shift="1" caron="1" code="Ǐ"/>
+        <Action circ="1" code="î"/> <Action shift="1" circ="1" code="Î"/>
+        <Action diae="1" code="ï"/> <Action shift="1" diae="1" code="Ï"/>
+        <Action dot="1" code="ı"/> <Action shift="1" dot="1" code="İ"/>
+        <Action grave="1" code="ì"/> <Action shift="1" grave="1" code="Ì"/>
+        <Action macron="1" code="ī"/> <Action shift="1" macron="1" code="Ī"/>
+        <Action ogonek="1" code="į"/> <Action shift="1" ogonek="1" code="Į"/>
+        <Action tilde="1" code="ĩ"/> <Action shift="1" tilde="1" code="Ĩ"/>
+    </Key>
+    <Key name="J">
+        <Action code="j"/> <Action shift="1" code="J"/>
+        <Action circ="1" code="ĵ"/> <Action shift="1" circ="1" code="Ĵ"/>
+    </Key>
+    <Key name="K">
+        <Action code="k"/> <Action shift="1" code="K"/>
+        <Action acute="1" code="ḱ"/> <Action shift="1" acute="1" code="Ḱ"/>
+        <Action caron="1" code="ǩ"/> <Action shift="1" caron="1" code="Ǩ"/>
+        <Action cedilla="1" code="ķ"/> <Action shift="1" cedilla="1" code="Ķ"/>
+    </Key>
+    <Key name="L">
+        <Action code="l"/> <Action shift="1" code="L"/>
+        <Action acute="1" code="ĺ"/> <Action shift="1" acute="1" code="Ĺ"/>
+        <Action caron="1" code="ľ"/> <Action shift="1" caron="1" code="Ľ"/>
+        <Action cedilla="1" code="ļ"/> <Action shift="1" cedilla="1" code="Ļ"/>
+        <Action dot="1" code="ŀ"/> <Action shift="1" dot="1" code="Ŀ"/>
+        <Action stroke="1" code="ł"/> <Action shift="1" stroke="1" code="Ł"/>
+    </Key>
+    <Key name="M">
+        <Action code="m"/> <Action shift="1" code="M"/>
+        <Action acute="1" code="ḿ"/> <Action shift="1" acute="1" code="Ḿ"/>
+        <Action dot="1" code="ṁ"/> <Action shift="1" dot="1" code="Ṁ"/>
+    </Key>
+
+    <Key name="N">
+        <Action code="n"/> <Action shift="1" code="N"/>
+        <Action acute="1" code="ń"/> <Action shift="1" acute="1" code="Ń"/>
+        <Action caron="1" code="ň"/> <Action shift="1" caron="1" code="Ň"/>
+        <Action cedilla="1" code="ņ"/> <Action shift="1" cedilla="1" code="Ņ"/>
+        <Action dot="1" code="ṅ"/> <Action shift="1" dot="1" code="Ṅ"/>
+        <Action grave="1" code="ǹ"/> <Action shift="1" grave="1" code="Ǹ"/>
+        <Action tilde="1" code="ñ"/> <Action shift="1" tilde="1" code="Ñ"/>
+    </Key>
+    <Key name="O">
+        <Action code="o"/> <Action shift="1" code="O"/>
+        <Action acute="1" code="ó"/> <Action shift="1" acute="1" code="Ó"/>
+        <Action breve="1" code="ŏ"/> <Action shift="1" breve="1" code="Ŏ"/>
+        <Action caron="1" code="ǒ"/> <Action shift="1" caron="1" code="Ǒ"/>
+        <Action circ="1" code="ô"/> <Action shift="1" circ="1" code="Ô"/>
+        <Action dblacute="1" code="ő"/> <Action shift="1" dblacute="1" code="Ő"/>
+        <Action diae="1" code="ö"/> <Action shift="1" diae="1" code="Ö"/>
+        <Action dot="1" code="ȯ"/> <Action shift="1" dot="1" code="Ȯ"/>
+        <Action grave="1" code="ò"/> <Action shift="1" grave="1" code="Ò"/>
+        <Action horn="1" code="ơ"/> <Action shift="1" horn="1" code="Ơ"/>
+        <Action macron="1" code="ō"/> <Action shift="1" macron="1" code="Ō"/>
+        <Action ogonek="1" code="ǫ"/> <Action shift="1" ogonek="1" code="Ǫ"/>
+        <Action spec="1" code="œ"/> <Action shift="1" spec="1" code="Œ"/>
+        <Action stroke="1" code="ø"/> <Action shift="1" stroke="1" code="Ø"/>
+        <Action tilde="1" code="õ"/> <Action shift="1" tilde="1" code="Õ"/>
+    </Key>
+    <Key name="P">
+        <Action code="p"/> <Action shift="1" code="P"/>
+        <Action acute="1" code="ṕ"/> <Action shift="1" acute="1" code="Ṕ"/>
+        <Action dot="1" code="ṗ"/> <Action shift="1" dot="1" code="Ṗ"/>
+        <Action text="P" spec="1" cmd="paste"/>
+    </Key>
+    <Key name="Q">
+        <Action code="q"/> <Action shift="1" code="Q"/>
+    </Key>
+    <Key name="R">
+        <Action code="r"/> <Action shift="1" code="R"/>
+        <Action acute="1" code="ŕ"/> <Action shift="1" acute="1" code="Ŕ"/>
+        <Action caron="1" code="ř"/> <Action shift="1" caron="1" code="Ř"/>
+        <Action cedilla="1" code="ŗ"/> <Action shift="1" cedilla="1" code="Ŗ"/>
+        <Action dot="1" code="ṙ"/> <Action shift="1" dot="1" code="Ṙ"/>
+    </Key>
+    <Key name="S">
+        <Action code="s"/> <Action shift="1" code="S"/>
+        <Action acute="1" code="ś"/> <Action shift="1" acute="1" code="Ś"/>
+        <Action caron="1" code="š"/> <Action shift="1" caron="1" code="Š"/>
+        <Action cedilla="1" code="ş"/> <Action shift="1" cedilla="1" code="Ş"/>
+        <Action circ="1" code="ŝ"/> <Action shift="1" circ="1" code="Ŝ"/>
+        <Action dot="1" code="ṡ"/> <Action shift="1" dot="1" code="Ṡ"/>
+        <Action spec="1" code="ß"/> <Action shift="1" spec="1" code="ẞ"/>
+    </Key>
+    <Key name="T">
+        <Action code="t"/> <Action shift="1" code="T"/>
+        <Action caron="1" code="ť"/> <Action shift="1" caron="1" code="Ť"/>
+        <Action cedilla="1" code="ţ"/> <Action shift="1" cedilla="1" code="Ţ"/>
+        <Action diae="1" code="ẗ"/>
+        <Action dot="1" code="ṫ"/> <Action shift="1" dot="1" code="Ṫ"/>
+        <Action spec="1" code="þ"/> <Action shift="1" spec="1" code="Þ"/>
+    </Key>
+    <Key name="U">
+        <Action code="u"/> <Action shift="1" code="U"/>
+        <Action acute="1" code="ú"/> <Action shift="1" acute="1" code="Ú"/>
+        <Action breve="1" code="ŭ"/> <Action shift="1" breve="1" code="Ŭ"/>
+        <Action caron="1" code="ǔ"/> <Action shift="1" caron="1" code="Ǔ"/>
+        <Action circ="1" code="û"/> <Action shift="1" circ="1" code="Û"/>
+        <Action dblacute="1" code="ű"/> <Action shift="1" dblacute="1" code="Ű"/>
+        <Action diae="1" code="ü"/> <Action shift="1" diae="1" code="Ü"/>
+        <Action grave="1" code="ù"/> <Action shift="1" grave="1" code="Ù"/>
+        <Action horn="1" code="ư"/> <Action shift="1" horn="1" code="Ư"/>
+        <Action macron="1" code="ū"/> <Action shift="1" macron="1" code="Ū"/>
+        <Action ogonek="1" code="ų"/> <Action shift="1" ogonek="1" code="Ų"/>
+        <Action ring="1" code="ů"/> <Action shift="1" ring="1" code="Ů"/>
+        <Action tilde="1" code="ũ"/> <Action shift="1" tilde="1" code="Ũ"/>
+    </Key>
+    <Key name="V">
+        <Action code="v"/> <Action shift="1" code="V"/>
+        <Action tilde="1" code="ṽ"/> <Action shift="1" tilde="1" code="Ṽ"/>
+    </Key>
+    <Key name="W">
+        <Action code="w"/> <Action shift="1" code="W"/>
+        <Action acute="1" code="ẃ"/> <Action shift="1" acute="1" code="Ẃ"/>
+        <Action circ="1" code="ŵ"/> <Action shift="1" circ="1" code="Ŵ"/>
+        <Action diae="1" code="ẅ"/> <Action shift="1" diae="1" code="Ẅ"/>
+        <Action dot="1" code="ẇ"/> <Action shift="1" dot="1" code="Ẇ"/>
+        <Action grave="1" code="ẁ"/> <Action shift="1" grave="1" code="Ẁ"/>
+        <Action ring="1" code="ẘ"/>
+    </Key>
+    <Key name="X">
+        <Action code="x"/> <Action shift="1" code="X"/>
+        <Action diae="1" code="ẍ"/> <Action shift="1" diae="1" code="Ẍ"/>
+        <Action dot="1" code="ẋ"/> <Action shift="1" dot="1" code="Ẋ"/>
+        <Action text="X" spec="1" cmd="cut"/>
+    </Key>
+    <Key name="Y">
+        <Action code="y"/> <Action shift="1" code="Y"/>
+        <Action acute="1" code="ý"/> <Action shift="1" acute="1" code="Ý"/>
+        <Action circ="1" code="ŷ"/> <Action shift="1" circ="1" code="Ŷ"/>
+        <Action diae="1" code="ÿ"/> <Action shift="1" diae="1" code="Ÿ"/>
+        <Action dot="1" code="ẏ"/> <Action shift="1" dot="1" code="Ẏ"/>
+        <Action grave="1" code="ỳ"/> <Action shift="1" grave="1" code="Ỳ"/>
+        <Action macron="1" code="ȳ"/> <Action shift="1" macron="1" code="Ȳ"/>
+        <Action ring="1" code="ẙ"/>
+        <Action tilde="1" code="ỹ"/> <Action shift="1" tilde="1" code="Ỹ"/>
+        <Action spec="1" code="ỻ"/> <Action shift="1" spec="1" code="Ỻ"/>
+    </Key>
+    <Key name="Z">
+        <Action code="z"/> <Action shift="1" code="Z"/>
+        <Action acute="1" code="ź"/> <Action shift="1" acute="1" code="Ź"/>
+        <Action caron="1" code="ž"/> <Action shift="1" caron="1" code="Ž"/>
+        <Action circ="1" code="ẑ"/> <Action shift="1" circ="1" code="Ẑ"/>
+        <Action dot="1" code="ż"/> <Action shift="1" dot="1" code="Ż"/>
+    </Key>
+
+
+</TransparentKeyboard>
+
+<!-- W=59
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| ` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | ‒ | = | Bksp |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| Tab| q | w | e | r | t | y | u | i | o | p | [ | ] | EN  |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒++ T  +
+| Caps| a | s | d | f | g | h | j | k | l | ; | ' | \ | ER |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| Shift| z | x | c | v | b | n | m | , | . | / |   | Up|   |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| Ctrl| Esc |         s p a c e        | Spec| |Lft| Dn|Rgt|
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+ -->
+
+<!-- W=60
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| ` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | ‒ | = | Bkspc |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| Tab | q | w | e | r | t | y | u | i | o | p | [ | ] | EN  |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒++ T  +
+| Caps | a | s | d | f | g | h | j | k | l | ; | ' | \ | ER |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| Shift | z | x | c | v | b | n | m | , | . | / |   | Up|   |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| Ctrl| Esc |         s p a c e        | Spec | |Lft| Dn|Rgt|
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+ -->
+
+<!-- W=61
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| ` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | ‒ | = | Bckspc |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| Tab  | q | w | e | r | t | y | u | i | o | p | [ | ] | EN  |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒++ T  +
+| Caps  | a | s | d | f | g | h | j | k | l | ; | ' | \ | ER |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| Sh | < | z | x | c | v | b | n | m | , | . | / |   | Up|   |
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+
+| Ctrl| Esc |         s p a c e        | Spec |  |Lft| Dn|Rgt|
++‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+ -->
+
+<!-- vim: set ai sw=4 ts=4 et: -->
