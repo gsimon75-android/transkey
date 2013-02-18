@@ -34,6 +34,12 @@ import android.inputmethodservice.AbstractInputMethodService;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import android.graphics.Paint;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.view.WindowManager;
+
+
 public class TransparentKeyboard extends InputMethodService implements KeyboardView.OnKeyboardActionListener, SharedPreferences.OnSharedPreferenceChangeListener  {
 	public static final String	SHARED_PREFS_NAME = "TransparentKeyboardSettings";
 	public static final int[]	builtinLayouts = { R.xml.default_latin }; // keep in sync with constants.xml
@@ -47,6 +53,32 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 
 	ExtractedTextRequest		etreq = new ExtractedTextRequest();
 	int				selectionStart = -1, selectionEnd = -1;
+
+	KamuView			kv;
+
+	class KamuView extends View {
+		Paint	candidatePaint;
+
+		public KamuView(Context context) {
+			super(context);
+			candidatePaint = new Paint();
+			candidatePaint.setAntiAlias(true);
+			candidatePaint.setColor(Color.YELLOW);
+			candidatePaint.setTextAlign(Paint.Align.CENTER);
+			candidatePaint.setShadowLayer(3, 0, 2, 0xff000000);
+		}
+
+		@Override protected void onDraw(Canvas canvas) {
+			int w = canvas.getWidth();
+			int h = canvas.getHeight();
+			canvas.drawLine(0, 0, w, h, candidatePaint);
+			canvas.drawLine(w, 0, 0, h, candidatePaint);
+		}
+
+		@Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+			setMeasuredDimension(256, 256);
+		}
+	}
 
 	// send an auto-revoked notification with a title and a message
 	void sendNotification(String title, String msg) {
@@ -89,6 +121,8 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 		v = new TransparentKeyboardView(this);
 		v.setOnKeyboardActionListener(this);
 
+		kv = new KamuView(this);
+
 		currentLayout = -1;
 		updateLayout(R.xml.default_latin);
 
@@ -116,6 +150,9 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 		super.onStartInputView(attribute, restarting);
 		if (v != null) {
 			v.setInputType(attribute.inputType);
+			WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
+			WindowManager.LayoutParams lp = new WindowManager.LayoutParams(256, 256, 100, 100, WindowManager.LayoutParams.TYPE_APPLICATION_PANEL, WindowManager.LayoutParams.FLAG_DIM_BEHIND + WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN, 0);
+			wm.addView(kv, lp);
 		}
 	}
 
