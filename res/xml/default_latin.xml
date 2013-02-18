@@ -16,7 +16,7 @@
     | Ctrl||Esc||         s p a c e        ||Spec||Lft| Dn|Rgt|
     +‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒+ -->
     <Row>
-        <Align width="1"/> <Key name="ACUTE"/> <Key name="BREVE"/> <Key name="CARON"/> <Key name="CEDILLA"/> <Key name="CIRC"/> <Key name="DBLACUTE"/> <Key name="DIAE"/> <Key name="DOT"/> <Key name="GRAVE"/> <Key name="HORN"/> <Key name="MACRON"/> <Key name="OGONEK"/> <Key name="TILDE"/> <Key name="STROKE"/> <Align width="1"/>
+        <Align width="1"/> <Key name="ACUTE"/> <Key name="BREVE"/> <Key name="CARON"/> <Key name="CEDILLA"/> <Key name="CIRC"/> <Key name="DBLACUTE"/> <Key name="DIAE"/> <Key name="ADOT"/> <Key name="GRAVE"/> <Key name="HORN"/> <Key name="MACRON"/> <Key name="OGONEK"/> <Key name="TILDE"/> <Key name="STROKE"/> <Align width="1"/>
     </Row>
     <Row>
         <Key name="BACKTICK"/> <Key name="1"/> <Key name="2"/> <Key name="3"/> <Key name="4"/> <Key name="5"/> <Key name="6"/> <Key name="7"/> <Key name="8"/> <Key name="9"/> <Key name="0"/> <Key name="MINUS"/> <Key name="EQUALS"/> <Key name="BACKSPACE" width="6"/>
@@ -31,25 +31,29 @@
         <Key name="SHIFT" width="7"/> <Key name="Z"/> <Key name="X"/> <Key name="C"/> <Key name="V"/> <Key name="B"/> <Key name="N"/> <Key name="M"/> <Key name="COMMA"/> <Key name="DOT"/> <Key name="SLASH"/> <Align width="3"/> <Key name="UP"/> <Align width="4"/>
     </Row>
     <Row>
-        <Key name="CTRL" width="6"/> <Align width="1"/> <Key name="ESC"/> <Align width="1"/> <Key name="SPACE" width="27"/> <Align width="1"/> <Key name="D_SPEC" width="5"/> <Align width="1"/> <Key name="LEFT"/> <Key name="DOWN"/> <Key name="RIGHT"/>
+        <Key name="CTRL" width="6"/> <Align width="1"/> <Key name="ESC"/> <Align width="1"/> <Key name="SPACE" width="27"/> <Align width="1"/> <Key name="SPEC" width="5"/> <Align width="1"/> <Key name="LEFT"/> <Key name="DOWN"/> <Key name="RIGHT"/>
     </Row>
 
     <!-- fixme: (.*) below, hook, double acute, inverted breve, composite accents -->
     <Key name="ACUTE">              <Action text="◌́" mod="acute"/>              </Key>
     <Key name="BREVE">              <Action text="◌̆" mod="breve"/>              </Key>
-    <Key name="CARON">              <Action text="◌̌" mod="caron"/>              </Key>
+    <!--Key name="CARON">              <Action text="◌̌" mod="caron"/>              </Key-->
+    <Key name="CARON">              <Action text="◌̬" mod="caron"/>              </Key>
     <Key name="CEDILLA">            <Action text="◌̧" mod="cedilla"/>            </Key>
-    <Key name="CIRC">               <Action text="◌̂" mod="circ"/>               </Key>
+    <!--Key name="CIRC">               <Action text="◌̂" mod="circ"/>               </Key-->
+    <Key name="CIRC">               <Action text="◌̭" mod="circ"/>               </Key>
     <Key name="DBLACUTE">           <Action text="◌̋" mod="dblacute"/>           </Key>
     <Key name="DIAE">               <Action text="◌̈" mod="diae"/>               </Key>
-    <Key name="DOT">                <Action text="◌̇" mod="dot"/>                </Key>
+    <!--Key name="ADOT">               <Action text="◌̇" mod="dot"/>                </Key-->
+    <Key name="ADOT">               <Action text="◌̣" mod="dot"/>                </Key>
     <Key name="GRAVE">              <Action text="◌̀" mod="grave"/>              </Key>
     <Key name="HORN">               <Action text="◌̛" mod="horn"/>               </Key>
     <Key name="MACRON">             <Action text="◌̄" mod="macron"/>             </Key>
     <Key name="OGONEK">             <Action text="◌̨" mod="ogonek"/>             </Key>
     <Key name="RING">               <Action text="◌̊" mod="ring"/>               </Key>
     <Key name="TILDE">              <Action text="◌̃" mod="tilde"/>              </Key>
-    <Key name="STROKE">             <Action text="◌̵" mod="stroke"/>             </Key>
+    <!--Key name="STROKE">             <Action text="◌̵" mod="stroke"/>             </Key-->
+    <Key name="STROKE">             <Action text="◌̽" mod="stroke"/>             </Key>
 
     <Key name="SPEC">               <Action text="S" mod="spec"/>               </Key>
     <Key name="ALT">                <Action text="A" mod="alt"/>                </Key>
@@ -121,11 +125,11 @@
     </Key>
     <Key name="LEFT">
         <Action text="←" key="21"/>
-        <Action text="↰" spec="1" cmd="selectStart"/>
+        <Action text="↱" spec="1" cmd="selectEnd"/>
     </Key>
     <Key name="RIGHT">
         <Action text="→" key="22"/>
-        <Action text="↱" spec="1" cmd="selectEnd"/>
+        <Action text="↰" spec="1" cmd="selectStart"/>
     </Key>
 
     <Key name="0">

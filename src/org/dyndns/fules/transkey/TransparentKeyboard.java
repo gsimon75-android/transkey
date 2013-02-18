@@ -164,7 +164,6 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 		if (cmd.equals("selectStart")) {
 			selectionStart = ic.getExtractedText(etreq, 0).selectionStart;
 			if ((selectionStart >= 0) && (selectionEnd >= 0)) {
-				//Log.v(TAG, "selection " + String.valueOf(selectionStart) + ".." + String.valueOf(selectionEnd));
 				ic.setSelection(selectionStart, selectionEnd);
 				selectionStart = selectionEnd = -1;
 			}
@@ -172,7 +171,6 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 		else if (cmd.equals("selectEnd")) {
 			selectionEnd = ic.getExtractedText(etreq, 0).selectionEnd;
 			if ((selectionStart >= 0) && (selectionEnd >= 0)) {
-				//Log.v(TAG, "selection " + String.valueOf(selectionStart) + ".." + String.valueOf(selectionEnd));
 				ic.setSelection(selectionStart, selectionEnd);
 				selectionStart = selectionEnd = -1;
 			}
