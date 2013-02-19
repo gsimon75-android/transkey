@@ -139,47 +139,47 @@
     <Key name="1">
         <Action code="1"/> <Action shift="1" code="!"/>
         <Action spec="1" code="¹"/> <Action spec="1" shift="1" code="¡"/>
-        <Action slash="1" cmd="alpha 0.1" text="A1" isSpecial="1"/>
+        <Action stroke="1" cmd="alpha 0.1" text="A1" isSpecial="1"/>
     </Key>
     <Key name="2">
         <Action code="2"/> <Action shift="1" code="%40"/> <!-- @ -->
         <Action spec="1" code="²"/>
-        <Action slash="1" cmd="alpha 0.2" text="A2" isSpecial="1"/>
+        <Action stroke="1" cmd="alpha 0.2" text="A2" isSpecial="1"/>
     </Key>
     <Key name="3">
         <Action code="3"/> <Action shift="1" code="%23"/> <!-- # -->
         <Action spec="1" code="³"/>
-        <Action slash="1" cmd="alpha 0.3" text="A3" isSpecial="1"/>
+        <Action stroke="1" cmd="alpha 0.3" text="A3" isSpecial="1"/>
     </Key>
     <Key name="4">
         <Action code="4"/> <Action shift="1" code="$"/>
         <Action spec="1" code="¤"/> <Action spec="1" shift="1" code="£"/>
-        <Action slash="1" cmd="alpha 0.4" text="A4" isSpecial="1"/>
+        <Action stroke="1" cmd="alpha 0.4" text="A4" isSpecial="1"/>
     </Key>
     <Key name="5"> 
         <Action code="5"/> <Action shift="1" code="%25"/> <!-- % -->
         <Action spec="1" code="€"/>
-        <Action slash="1" cmd="alpha 0.5" text="A5" isSpecial="1"/>
+        <Action stroke="1" cmd="alpha 0.5" text="A5" isSpecial="1"/>
     </Key>
     <Key name="6">
         <Action code="6"/> <Action shift="1" code="^"/>
         <Action spec="1" code="¼"/>
-        <Action slash="1" cmd="alpha 0.6" text="A6" isSpecial="1"/>
+        <Action stroke="1" cmd="alpha 0.6" text="A6" isSpecial="1"/>
     </Key>
     <Key name="7">
         <Action code="7"/> <Action shift="1" code="&amp;"/>
         <Action spec="1" code="½"/>
-        <Action slash="1" cmd="alpha 0.7" text="A7" isSpecial="1"/>
+        <Action stroke="1" cmd="alpha 0.7" text="A7" isSpecial="1"/>
     </Key>
     <Key name="8">
         <Action code="8"/> <Action shift="1" code="*"/>
         <Action spec="1" code="¾"/>
-        <Action slash="1" cmd="alpha 0.8" text="A8" isSpecial="1"/>
+        <Action stroke="1" cmd="alpha 0.8" text="A8" isSpecial="1"/>
     </Key>
     <Key name="9">
         <Action code="9"/> <Action shift="1" code="("/>
         <Action spec="1" code="‘"/>
-        <Action slash="1" cmd="alpha 0.9" text="A9" isSpecial="1"/>
+        <Action stroke="1" cmd="alpha 0.9" text="A9" isSpecial="1"/>
     </Key>
 
     <Key name="A">
