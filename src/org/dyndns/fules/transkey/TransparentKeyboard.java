@@ -35,10 +35,11 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.WindowManager;
-
+import android.view.Gravity;
 
 public class TransparentKeyboard extends InputMethodService implements KeyboardView.OnKeyboardActionListener, SharedPreferences.OnSharedPreferenceChangeListener  {
 	public static final String	SHARED_PREFS_NAME = "TransparentKeyboardSettings";
@@ -57,26 +58,26 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 	KamuView			kv;
 
 	class KamuView extends View {
-		Paint	candidatePaint;
+		//Paint	candidatePaint;
 
 		public KamuView(Context context) {
 			super(context);
-			candidatePaint = new Paint();
+			/*candidatePaint = new Paint();
 			candidatePaint.setAntiAlias(true);
 			candidatePaint.setColor(Color.YELLOW);
 			candidatePaint.setTextAlign(Paint.Align.CENTER);
-			candidatePaint.setShadowLayer(3, 0, 2, 0xff000000);
+			candidatePaint.setShadowLayer(3, 0, 2, 0xff000000);*/
 		}
 
-		@Override protected void onDraw(Canvas canvas) {
+		/*@Override protected void onDraw(Canvas canvas) {
 			int w = canvas.getWidth();
 			int h = canvas.getHeight();
 			canvas.drawLine(0, 0, w, h, candidatePaint);
 			canvas.drawLine(w, 0, 0, h, candidatePaint);
-		}
+		}*/
 
 		@Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-			setMeasuredDimension(256, 256);
+			setMeasuredDimension(1, 1);
 		}
 	}
 
@@ -121,6 +122,7 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 		v = new TransparentKeyboardView(this);
 		v.setOnKeyboardActionListener(this);
 
+		Log.d(TAG, "Creating KamuView;");
 		kv = new KamuView(this);
 
 		currentLayout = -1;
@@ -140,10 +142,10 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 		else
 			Log.e(TAG, "onCreateInputView: v is null");
 	
-		ViewParent p = v.getParent();
+		ViewParent p = kv.getParent();
 		if ((p != null) && (p instanceof ViewGroup))
-			((ViewGroup)p).removeView(v);
-		return v;
+			((ViewGroup)p).removeView(kv);
+		return kv;
 	} 
 
 	@Override public void onStartInputView(EditorInfo attribute, boolean restarting) {
@@ -151,8 +153,15 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 		if (v != null) {
 			v.setInputType(attribute.inputType);
 			WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
-			WindowManager.LayoutParams lp = new WindowManager.LayoutParams(256, 256, 100, 100, WindowManager.LayoutParams.TYPE_APPLICATION_PANEL, WindowManager.LayoutParams.FLAG_DIM_BEHIND + WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN, 0);
-			wm.addView(kv, lp);
+			WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+			lp.alpha = 0.5f;
+			lp.format = PixelFormat.TRANSLUCENT;
+			lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+			lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+			lp.gravity = Gravity.FILL_HORIZONTAL | Gravity.BOTTOM;
+			lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+			lp.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE; 
+			wm.addView(v, lp);
 		}
 	}
 
