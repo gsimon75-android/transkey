@@ -192,7 +192,7 @@ public class TransparentKeyboardView extends LinearLayout {
 						KeyDefinition km = keys.get(name);
 						if (km == null)
 							return true;
-						Action ac = km.actions.get(mods);
+						Action ac = km.getAction(mods);
 						if (ac == null)
 							return true;
 						return processAction(ac);
@@ -214,7 +214,7 @@ public class TransparentKeyboardView extends LinearLayout {
 
 				KeyDefinition km = keys.get(name);
 				if (km != null) {
-					Action ac = km.actions.get(mods);
+					Action ac = km.getAction(mods);
 					if (ac != null)
 						canvas.drawText(ac.text, xmax / 2, (ymax - fontSize) / 2 + fontDispY, ac.paint);
 				}
@@ -342,6 +342,16 @@ public class TransparentKeyboardView extends LinearLayout {
 				ac.setPaint();
 			}
 		}
+
+		Action
+		getAction(BitSet mods) {
+			Action ac;
+			
+			ac = actions.get(mods);
+			if (ac == null)
+				ac = actions.get(new BitSet());
+			return ac;
+		}
 	}
 
 
@@ -369,6 +379,11 @@ public class TransparentKeyboardView extends LinearLayout {
 		int n = numModifiers++;
 		modifiers.put(s, new Integer(n));
 		return n;
+	}
+
+	boolean
+	checkModifier(String s) {
+		return modifiers.containsKey(s) ? mods.get(modifiers.get(s).intValue()) : false;
 	}
 
 	public String readLayout(XmlPullParser parser) throws XmlPullParserException, IOException {

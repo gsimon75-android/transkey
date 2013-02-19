@@ -49,32 +49,19 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 	int				width, defKeyWidth;
 	private SharedPreferences	mPrefs;					// the preferences instance
 	TransparentKeyboardView		v;					// the current view
+	WindowManager.LayoutParams	lp = new WindowManager.LayoutParams();
 	int				currentLayout;
-	boolean				forcePortrait;				// use the portrait layout even for horizontal screens
 
 	ExtractedTextRequest		etreq = new ExtractedTextRequest();
 	int				selectionStart = -1, selectionEnd = -1;
 
 	KamuView			kv;
+	boolean				vAdded = false;
 
 	class KamuView extends View {
-		//Paint	candidatePaint;
-
 		public KamuView(Context context) {
 			super(context);
-			/*candidatePaint = new Paint();
-			candidatePaint.setAntiAlias(true);
-			candidatePaint.setColor(Color.YELLOW);
-			candidatePaint.setTextAlign(Paint.Align.CENTER);
-			candidatePaint.setShadowLayer(3, 0, 2, 0xff000000);*/
 		}
-
-		/*@Override protected void onDraw(Canvas canvas) {
-			int w = canvas.getWidth();
-			int h = canvas.getHeight();
-			canvas.drawLine(0, 0, w, h, candidatePaint);
-			canvas.drawLine(w, 0, 0, h, candidatePaint);
-		}*/
 
 		@Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 			setMeasuredDimension(1, 1);
@@ -119,6 +106,14 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 		mPrefs = getSharedPreferences(SHARED_PREFS_NAME, 0);
 		etreq.hintMaxChars = etreq.hintMaxLines = 0;
 
+		lp.alpha = 0.5f;
+		lp.format = PixelFormat.TRANSLUCENT;
+		lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+		lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+		lp.gravity = Gravity.FILL_HORIZONTAL | Gravity.BOTTOM;
+		lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+		lp.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE; 
+
 		v = new TransparentKeyboardView(this);
 		v.setOnKeyboardActionListener(this);
 
@@ -135,33 +130,40 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 	// Select the layout view appropriate for the screen direction, if there is more than one
 	@Override public View onCreateInputView() {
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		ViewParent p;
 
-		Log.v(TAG, "w=" + String.valueOf(metrics.widthPixels) + ", h=" + String.valueOf(metrics.heightPixels) + ", forceP=" + String.valueOf(forcePortrait));
 		if (v != null)
 			v.calculateSizesForMetrics(metrics);
 		else
 			Log.e(TAG, "onCreateInputView: v is null");
 	
-		ViewParent p = kv.getParent();
+		p = kv.getParent();
 		if ((p != null) && (p instanceof ViewGroup))
 			((ViewGroup)p).removeView(kv);
+
+		p = v.getParent();
+		if ((p != null) && (p instanceof ViewGroup))
+			((ViewGroup)p).removeView(v);
+
 		return kv;
 	} 
 
 	@Override public void onStartInputView(EditorInfo attribute, boolean restarting) {
 		super.onStartInputView(attribute, restarting);
-		if (v != null) {
+		if ((v != null) && !vAdded) {
 			v.setInputType(attribute.inputType);
 			WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
-			WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-			lp.alpha = 0.5f;
-			lp.format = PixelFormat.TRANSLUCENT;
-			lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-			lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
-			lp.gravity = Gravity.FILL_HORIZONTAL | Gravity.BOTTOM;
-			lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-			lp.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE; 
 			wm.addView(v, lp);
+			vAdded = true;
+		}
+	}
+
+	@Override public void onFinishInputView(boolean finishingInput) {
+		super.onFinishInputView(finishingInput);
+		if ((v != null) && vAdded) {
+			WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
+			wm.removeView(v);
+			vAdded = false;
 		}
 	}
 
@@ -179,13 +181,19 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 	private void sendModifiers(InputConnection ic, int action) {
 		if (v == null)
 			return;
-
-		/*if (v.checkState("shift"))
+		if (v.checkModifier("shift"))
 			ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_SHIFT_LEFT));
-		if (v.checkState("alt"))
+		if (v.checkModifier("spec"))
 			ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_ALT_LEFT));
-		if (v.checkState("altgr"))
-			ic.sendKeyEvent(new KeyEvent(action, KeyEvent.KEYCODE_ALT_RIGHT));*/
+	}
+
+	private void
+	setAlpha(float a) {
+		lp.alpha = a;
+		if ((v != null) && vAdded) {
+			WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
+			wm.updateViewLayout(v, lp);
+		}
 	}
 
 	// Process a generated keycode
@@ -231,6 +239,8 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 			ic.performContextMenuAction(android.R.id.paste);
 		else if (cmd.equals("switchIM"))
 			ic.performContextMenuAction(android.R.id.switchInputMethod);
+		else if (cmd.startsWith("alpha "))
+			setAlpha(Float.parseFloat(cmd.substring(6)));
 		else
 			Log.w(TAG, "Unknown cmd '" + cmd + "'");
 	}
