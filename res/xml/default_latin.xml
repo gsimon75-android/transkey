@@ -31,7 +31,7 @@
         <Key name="SHIFT" width="7"/> <Key name="Z"/> <Key name="X"/> <Key name="C"/> <Key name="V"/> <Key name="B"/> <Key name="N"/> <Key name="M"/> <Key name="COMMA"/> <Key name="DOT"/> <Key name="SLASH"/> <Align width="3"/> <Key name="UP"/> <Align width="4"/>
     </Row>
     <Row>
-        <Key name="CTRL" width="6"/> <Align width="1"/> <Key name="ESC"/> <Align width="1"/> <Key name="SPACE" width="27"/> <Align width="1"/> <Key name="SPEC" width="5"/> <Align width="1"/> <Key name="LEFT"/> <Key name="DOWN"/> <Key name="RIGHT"/>
+        <Key name="CTRL" width="6"/> <Align width="1"/> <Key name="ESC"/> <Align width="1"/> <Key name="SPACE" width="22"/> <Align width="1"/> <Key name="HIDE"/> <Align width="1"/> <Key name="SPEC" width="5"/> <Align width="1"/> <Key name="LEFT"/> <Key name="DOWN"/> <Key name="RIGHT"/>
     </Row>
 
     <!-- fixme: (.*) below, hook, double acute, inverted breve, composite accents -->
@@ -59,11 +59,11 @@
     <Key name="ALT">                <Action text="A" mod="alt"/>                </Key>
     <Key name="SHIFT">              <Action text="⇧" mod="shift"/>              </Key>
     <Key name="CTRL">               <Action text="C" key="23" isSpecial="1"/>   </Key>
-    <Key name="LOCK">               <Action text="⇪" cmd="lock"/>               <Action shift="1" text="⇪" cmd="lock"/>     </Key>
+    <Key name="LOCK">               <Action text="⇪" lock="1" mod="shift"/>     </Key>
 
-    <Key name="BACKSPACE">          <Action text="↚" key="67"/>                 </Key>
-    <Key name="SPACE">              <Action text="▆" key="62"/>                 </Key>
-    <Key name="TAB">                <Action text="⇨" key="61"/>                 </Key>
+    <Key name="BACKSPACE">          <Action text="↚" key="67" isSpecial="1"/>                 </Key>
+    <Key name="SPACE">              <Action text="▆" key="62" isSpecial="1"/>                 </Key>
+    <Key name="TAB">                <Action text="⇨" key="61" isSpecial="1"/>                 </Key>
 
     <Key name="APOSTROPHE">
         <Action code="'"/> <Action shift="1" code="&quot;"/>
@@ -84,12 +84,13 @@
         <Action code="."/> <Action shift="1" code="&gt;"/>
     </Key>
     <Key name="ENTER">
-        <Action text="↲" key="66"/>
-        <Action text="╳" spec="1" key="23"/>
+        <Action text="↲" key="66" isSpecial="1"/>
     </Key>
     <Key name="ESC">
         <Action text="E" code="%1b" isSpecial="1"/>
-        <Action text="H" spec="1" cmd="hide"/>
+    </Key>
+    <Key name="HIDE">
+        <Action text="H" cmd="hide"/>
     </Key>
     <Key name="MINUS">
         <Action code="-"/> <Action shift="1" code="_"/>
@@ -117,18 +118,18 @@
     </Key>
 
     <Key name="UP">
-        <Action text="↑" key="19"/>             
+        <Action text="↑" key="19" isSpecial="1"/>
     </Key>
     <Key name="DOWN">
-        <Action text="↓" key="20"/>             
+        <Action text="↓" key="20" isSpecial="1"/>
         <Action text="▒" spec="1" cmd="selectAll"/>
     </Key>
     <Key name="LEFT">
-        <Action text="←" key="21"/>
+        <Action text="←" key="21" isSpecial="1"/>
         <Action text="↱" spec="1" cmd="selectEnd"/>
     </Key>
     <Key name="RIGHT">
-        <Action text="→" key="22"/>
+        <Action text="→" key="22" isSpecial="1"/>
         <Action text="↰" spec="1" cmd="selectStart"/>
     </Key>
 
@@ -156,7 +157,7 @@
         <Action spec="1" code="¤"/> <Action spec="1" shift="1" code="£"/>
         <Action stroke="1" cmd="alpha 0.4" text="A4" isSpecial="1"/>
     </Key>
-    <Key name="5"> 
+    <Key name="5">
         <Action code="5"/> <Action shift="1" code="%25"/> <!-- % -->
         <Action spec="1" code="€"/>
         <Action stroke="1" cmd="alpha 0.5" text="A5" isSpecial="1"/>
@@ -208,7 +209,7 @@
         <Action cedilla="1" code="ç"/> <Action shift="1" cedilla="1" code="Ç"/>
         <Action circ="1" code="ĉ"/> <Action shift="1" circ="1" code="Ĉ"/>
         <Action dot="1" code="ċ"/> <Action shift="1" dot="1" code="Ċ"/>
-        <Action text="C" spec="1" cmd="copy"/>
+        <Action text="C" spec="1" cmd="copy"/> <Action text="C" spec="1" shift="1" cmd="copy"/>
     </Key>
     <Key name="D">
         <Action code="d"/> <Action shift="1" code="D"/>
@@ -321,7 +322,7 @@
         <Action code="p"/> <Action shift="1" code="P"/>
         <Action acute="1" code="ṕ"/> <Action shift="1" acute="1" code="Ṕ"/>
         <Action dot="1" code="ṗ"/> <Action shift="1" dot="1" code="Ṗ"/>
-        <Action text="P" spec="1" cmd="paste"/>
+        <Action text="P" spec="1" cmd="paste"/> <Action text="P" spec="1" shift="1" cmd="paste"/>
     </Key>
     <Key name="Q">
         <Action code="q"/> <Action shift="1" code="Q"/>
@@ -382,7 +383,7 @@
         <Action code="x"/> <Action shift="1" code="X"/>
         <Action diae="1" code="ẍ"/> <Action shift="1" diae="1" code="Ẍ"/>
         <Action dot="1" code="ẋ"/> <Action shift="1" dot="1" code="Ẋ"/>
-        <Action text="X" spec="1" cmd="cut"/>
+        <Action text="X" spec="1" cmd="cut"/> <Action text="X" spec="1" shift="1" cmd="cut"/>
     </Key>
     <Key name="Y">
         <Action code="y"/> <Action shift="1" code="Y"/>

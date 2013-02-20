@@ -209,6 +209,7 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 		InputConnection ic = getCurrentInputConnection();
 		sendModifiers(ic, KeyEvent.ACTION_DOWN);
 		sendKeyChar(text.charAt(0));
+		sendModifiers(ic, KeyEvent.ACTION_UP);
 	} 
 
 	// Process a command
@@ -241,6 +242,8 @@ public class TransparentKeyboard extends InputMethodService implements KeyboardV
 			ic.performContextMenuAction(android.R.id.switchInputMethod);
 		else if (cmd.startsWith("alpha "))
 			setAlpha(Float.parseFloat(cmd.substring(6)));
+		else if (cmd.equals("hide"))
+			requestHideSelf(0);
 		else
 			Log.w(TAG, "Unknown cmd '" + cmd + "'");
 	}
