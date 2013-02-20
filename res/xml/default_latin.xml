@@ -140,47 +140,38 @@
     <Key name="1">
         <Action code="1"/> <Action shift="1" code="!"/>
         <Action spec="1" code="¹"/> <Action spec="1" shift="1" code="¡"/>
-        <Action stroke="1" cmd="alpha 0.1" text="A1" isSpecial="1"/>
     </Key>
     <Key name="2">
         <Action code="2"/> <Action shift="1" code="%40"/> <!-- @ -->
         <Action spec="1" code="²"/>
-        <Action stroke="1" cmd="alpha 0.2" text="A2" isSpecial="1"/>
     </Key>
     <Key name="3">
         <Action code="3"/> <Action shift="1" code="%23"/> <!-- # -->
         <Action spec="1" code="³"/>
-        <Action stroke="1" cmd="alpha 0.3" text="A3" isSpecial="1"/>
     </Key>
     <Key name="4">
         <Action code="4"/> <Action shift="1" code="$"/>
         <Action spec="1" code="¤"/> <Action spec="1" shift="1" code="£"/>
-        <Action stroke="1" cmd="alpha 0.4" text="A4" isSpecial="1"/>
     </Key>
     <Key name="5">
         <Action code="5"/> <Action shift="1" code="%25"/> <!-- % -->
         <Action spec="1" code="€"/>
-        <Action stroke="1" cmd="alpha 0.5" text="A5" isSpecial="1"/>
     </Key>
     <Key name="6">
         <Action code="6"/> <Action shift="1" code="^"/>
         <Action spec="1" code="¼"/>
-        <Action stroke="1" cmd="alpha 0.6" text="A6" isSpecial="1"/>
     </Key>
     <Key name="7">
         <Action code="7"/> <Action shift="1" code="&amp;"/>
         <Action spec="1" code="½"/>
-        <Action stroke="1" cmd="alpha 0.7" text="A7" isSpecial="1"/>
     </Key>
     <Key name="8">
         <Action code="8"/> <Action shift="1" code="*"/>
         <Action spec="1" code="¾"/>
-        <Action stroke="1" cmd="alpha 0.8" text="A8" isSpecial="1"/>
     </Key>
     <Key name="9">
         <Action code="9"/> <Action shift="1" code="("/>
         <Action spec="1" code="‘"/>
-        <Action stroke="1" cmd="alpha 0.9" text="A9" isSpecial="1"/>
     </Key>
 
     <Key name="A">
@@ -245,6 +236,7 @@
         <Action circ="1" code="ĝ"/> <Action shift="1" circ="1" code="Ĝ"/>
         <Action dot="1" code="ġ"/> <Action shift="1" dot="1" code="Ġ"/>
         <Action macron="1" code="ḡ"/> <Action shift="1" macron="1" code="Ḡ"/>
+        <Action spec="1" cmd="alpha 0.2" text="A1" isSpecial="1"/>
     </Key>
     <Key name="H">
         <Action code="h"/> <Action shift="1" code="H"/>
@@ -254,6 +246,7 @@
         <Action diae="1" code="ḧ"/> <Action shift="1" diae="1" code="Ḧ"/>
         <Action dot="1" code="ḣ"/> <Action shift="1" dot="1" code="Ḣ"/>
         <Action stroke="1" code="ħ"/> <Action shift="1" stroke="1" code="Ħ"/>
+        <Action spec="1" cmd="alpha 0.4" text="A2" isSpecial="1"/>
     </Key>
     <Key name="I">
         <Action code="i"/> <Action shift="1" code="I"/>
@@ -271,12 +264,14 @@
     <Key name="J">
         <Action code="j"/> <Action shift="1" code="J"/>
         <Action circ="1" code="ĵ"/> <Action shift="1" circ="1" code="Ĵ"/>
+        <Action spec="1" cmd="alpha 0.6" text="A3" isSpecial="1"/>
     </Key>
     <Key name="K">
         <Action code="k"/> <Action shift="1" code="K"/>
         <Action acute="1" code="ḱ"/> <Action shift="1" acute="1" code="Ḱ"/>
         <Action caron="1" code="ǩ"/> <Action shift="1" caron="1" code="Ǩ"/>
         <Action cedilla="1" code="ķ"/> <Action shift="1" cedilla="1" code="Ķ"/>
+        <Action spec="1" cmd="alpha 0.8" text="A4" isSpecial="1"/>
     </Key>
     <Key name="L">
         <Action code="l"/> <Action shift="1" code="L"/>
